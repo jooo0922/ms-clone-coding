@@ -1,0 +1,362 @@
+/* 모든 선택자에 대해 box-sizing: border-box 를 줌으로써
+태그의 width 와 height 값을 지정할 때 element 의 크기가 좀 더 예측 가능하도록 함.
+또 기본적으로 모든 요소의 마진과 패딩을 0으로 설정해서
+필요하면 이후에 추가적으로 해당 태그에만 마진이나 패딩값을 줄 수 있도록 함.
+이거를 모든 선택자에 적용하여 기본 설정으로 깔고 css를 작성하는 게 좋다! */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #000;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+a{
+    color: #262626;
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+.container{
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Nav */
+.main-nav{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 20px 0;
+    font-size: 13px;
+    justify-content: space-between;
+}
+
+.main-nav .logo{
+    width: 110px;
+}
+
+.main-nav ul{
+    display: flex;   
+}
+
+.main-nav ul li{
+    padding: 0 10px;
+}
+
+.main-nav ul li a{
+    padding-bottom: 2px;
+}
+
+.main-nav ul li a:hover{
+    border-bottom: 2px solid #262626;
+}
+
+.main-nav ul.main-menu{
+    flex: 1;
+    margin-left: 20px;
+}
+
+.menu-btn{
+    cursor: pointer;
+    position: absolute; /* 햄버거 메뉴의 position: absolute로 설정하여, 전체 화면에서 절대적인 위치값을 갖도록 함. */
+    top: 20px;
+    right: 30px; 
+    z-index: 2; /* 햄버거 메뉴가 항상 맨 위에 놓이도록 2로 설정 */
+    display: none; /* 햄버거 메뉴는 max-width: 700px; 일때만 보이는 거니까, 이외에 width 에서는 기본적으로 안보이게 */
+}
+.btn{
+    cursor: pointer;
+    display: inline-block;
+    border: 0;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: #262626;
+    color: #fff;
+    font-size: 15px;
+}
+
+
+.btn:hover{
+    opacity: 0.9;
+}
+
+.dark{
+    color: #fff;
+}
+
+.dark .btn{
+    background: #f4f4f4;
+    color: #333;
+}
+/* HTML 내에 section.carbon 태그에서 dark를 추가하여,
+css selector가 dark라는 클래스명을 가진 태그에 접근할 수 있게 함
+그래서 backgrond img가 어두운 section.carbon 태그에 한해 화이트 계열 컬러를 적용한 것*/
+
+/* Showcase */
+.showcase{
+    width: 100%;
+    height: 400px;
+    background: url('slide1.png') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+    margin-bottom: 20px;
+}
+/* background: backgrond-image, background-repeat, background-position, background-size 순서로 작성함 */
+
+.showcase h2, .showcase p{
+    margin-bottom: 10px;
+}
+
+.showcase .btn{
+    margin-top: 20px;
+}
+
+/* Home cards */
+.home-cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    margin-bottom: 40px;
+}
+/* 1fr 1fr 1fr 1fr 을 줄여서 쓴 것*/
+/* gird-gap 은 현재 지원하지 않고, gap, row-gap, column-gap 으로 사용 가능 */
+
+.home-cards img{
+    width: 100%;
+    margin-bottom: 20px;
+}
+/* img 상단의 div 태그는 grid-template-columns 를 1fr 반복으로 상단의 section 태그 너비에 맞게 비율이 조정됨
+그러나 img태그가 div의 width에 100%로 맞지 않아서 이를 조정한 것.*/
+
+.home-cards h3{
+    margin-bottom: 5px;
+}
+
+.home-cards a{
+    display: inline-block;
+    padding-top: 10px;
+    color: #0067b8;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/* <a>태그로 링크가 걸린 버튼 요소들은 터치 면적을 넓게 잡으려고
+전체적으로 inline-block으로 설정하는 것 같다*/
+
+.home-cards a:hover i{
+    margin-left: 10px;
+}
+/* Selector는 '<a>가 hover 상태에 있을 때 <i>를 가져와서' 로 읽음 */
+
+/* Xbox */
+.xbox{
+    width: 100%;
+    height: 350px;
+    background: url('xbox.png') no-repeat center center/cover;
+    margin-bottom: 20px;
+}
+
+.xbox .content{
+    width: 40%;
+    padding: 50px 0 0 30px;
+}
+
+.xbox p, .carbon p{ 
+    margin: 10px 0 20px;
+}
+/* 원래 xbox p 태그에만 적용되던 style 이였으나 
+selector에 carbon p 태그를 추가하여 carbon 태그안에 있는 <p> 에도 동일한 스타일을 적용함 */
+
+/* Carbon */
+.carbon{
+    width: 100%;
+    height: 350px;
+    background: url('carbon.jpg') no-repeat center center/cover;
+}
+
+.carbon .content{
+    width: 55%;
+    padding: 100px 0 0 30px;
+}
+
+/* Follow */
+.follow{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 30px 0 30px;
+}
+
+.follow *{
+    margin-right: 10px;
+}
+/* selector: 'follow라는 클래스명을 가진 태그 안에 모든 태그'를 선택한다.*/
+
+/* links */
+.links{
+    background: #f2f2f2;
+    color: #616161;
+    font-size: 12px;
+    padding: 35px 0px;
+}
+
+.links-inner{
+    max-width: 1100px;
+    margin: 0 auto;
+    /*최대 width 1100px을 넘어가면 links-inner의 양옆 마진값을 auto로 지정하여 늘려줘라*/
+
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.links li{
+    line-height: 2.8;
+}
+
+/* Footer */
+.footer{
+    background: #f2f2f2;
+    color: #616161;
+    font-size: 12px;
+    padding: 20px 0;
+}
+
+.footer-inner{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer div{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.footer div i{
+    margin-right: 10px;
+}
+.footer ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+/* 
+    flex-wrap: wrap; 은 width가 줄어들수록 
+    여러 태그들이 한 줄 내에서 뭉개지거나 화면밖으로 나가지 못하게
+    wrap 해주는 것. 
+    -> 태그들이 한 줄 안에서 박스가 뭉개지지 않고 다음 줄로 내려가면서 박스를 유지함.
+    기본값인 unwrap으로 하면 width가 줄어들수록 
+    한 줄 안에서 태그 박스들이 뭉개지거나 화면밖으로 나가서 안보임.
+    */
+
+.footer li{
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+@media(max-width: 700px){
+    .menu-btn{
+        display: block;
+    }
+
+    .menu-btn:hover{
+        opacity: 0.5;
+    }
+
+    .main-nav ul.right-menu{
+        margin-right: 50px;
+    }
+    
+    .main-nav ul.main-menu{
+        display: block;
+        position: absolute; /* 반응형에서 모바일로 갈 때 추가되는 요소는 display: block;, position: absolute; 처리해서 원래 요소들에 영향 안받게 할 것! */
+        top: 0;
+        left: 0;
+        background: #f2f2f2;
+        width: 50%;
+        height: 100%;
+        border-right: #ccc 1px solid;
+        opacity: 0.9;
+        padding: 30px;
+        transform: translateX(-500px); /* transform 속성은 회전, 크기 조절, 기울이기, 이동 효과 부여. translateX() 는 x방향으로 얼만큼 이동할 것인지.*/
+        transition: transform 0.5s ease-in-out; 
+    }
+    /* 
+    transition은 css속성 변경 시 애니메이션 속도 조절 -> 즉, transform이라는 css attribute의 값이 변화할 때, 그 속도를 조절한다는 뜻!
+    transition: transition-property(트랜지션 적용 대상), transition-duration(트랜지션 지속시간), transition-timing-function(ease in/out 설정); 순으로 작성됨.
+    */
+    
+    .main-nav ul.main-menu li{
+        padding: 10px;
+        border-bottom: #ccc solid 1px;
+        font-size: 14px;
+    }
+
+    .main-nav ul.main-menu li:last-child{ /* last-child는 '선택자 맨끝에 <li> 태그들 중 맨 마지막꺼를 선택해' 라는 뜻! 얘의 bottom border만 없애고 싶다면... */
+        border-bottom: 0;
+    }
+
+    .main-nav ul.main-menu.show{
+        transform: translateX(-20px);
+    } /* main-nav 안에 ul 태그에 할당된 2개 클래스(main-menu, show)의 교집합 태그, <ul class="main-menu show"> 만 선택해줘! */
+
+    .home-cards{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .xbox .content p{
+        display: none;
+    }
+    
+    .xbox .content h2{
+        margin-bottom: 20px;
+    }
+
+    .carbon .content{
+        width: 85%;
+    }
+    /* section.carbon 태그의 background img 가 
+    텍스트를 길게 작성해도 잘 읽히기 때문에
+    디자인적으로 div.content 태그를 부모 태그 너비의 85%로 바꾼 것...*/
+
+    .links .links-inner{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 500px){
+    .home-cards{
+        grid-template-columns: 1fr;
+    }
+
+    .links .links-inner{
+        grid-template-columns: 1fr;
+    }
+
+    .links .links-inner ul{
+        margin-bottom: 20px;
+    }
+    /* links-inner 태그의 ui 태그들이 1column으로 배열되다 보니 
+    ul 태그들 사이에 margin을 줘서 간격으로 ul끼리 구분할 수 있도록 디자인한 것*/
+}
